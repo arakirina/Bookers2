@@ -4,7 +4,7 @@
     <divclass="row">
       <div class="col-md-3">
         <h2>User info</h2>
-        <img class="attachment user profile_image follback" src="/assets/noimage.jpg">
+        <%= attachment_image_tag @user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
         <table class="table">
           <tbody>
             <tr></tr>
@@ -13,16 +13,17 @@
               <th><%= @user.name %></th>
             </tr>
             <tr>
+              <th>introduction</th>
               <th><%= @user.introduction %></th>
-              <th></th>
             </tr>
           </tbody>
         </table>
         <div class="row">
-          <% if @user.id == current_user.id %>
-            <p><%= link_to edit_user_path(@user) do %></p>
-            <i class="fas fa-user-cog"></i>
-          <% end %>
+            <% if @user.id == current_user.id %>
+             <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do  %>
+              <i class="fas fa-user-cog"></i>
+             <% end %>
+            <% end %>
         </div>
         <h1>New Book</h1>
         <%= form_with model: @book, local:true do |f| %>
@@ -34,7 +35,7 @@
         <% end %>
       </div>
       <div class="col-md-8 offset-md-1">
-        <h2>Book detail</h2>
+        <h2>Books</h2>
         <table class="table">
           <tbody>
             <% @books.each do |book| %>
@@ -52,13 +53,5 @@
     </div>
    </main>
 
-
-<% if @user.id == current_user.id %>
-
- <%= link_to  edit_user_path(@user) do  %>
-   <i class="fas fa-user-cog"></i>
- <% end %>
-
-<% end %>
 
 
