@@ -1,21 +1,4 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/"><span>Bookers</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <li><a class="fas fa-home nav-link text-light" href="/users/44355"> Home</a></li>
-          <li><a class="fas fa-users nav-link text-light" href="/users"> Users</a></li>
-          <li><a class="fas fa-book-open nav-link text-light" href="/books"> Books</a></li>
-          <li><a class="fas fa-sign-out-alt nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out"> Log out</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+
 
 <main>
 　<p id="notice"></p>
@@ -29,17 +12,19 @@
   　　  　<tr></tr>
           <tr>
       	    <th>name</th>
-      	    <th>na</th>
+      	    <th><%= current_user.name %></th>
           </tr>
           <tr>
         	  <th>introduction</th>
-        	  <th>introductionリンク</th>
+        	  <th><%= current_user.introduction %></th>
           </tr>
        </tbody>
       </table>
 
       <div class="row">
-       <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_id" href="/users/id/edit"></a>
+          <%= link_to edit_user_path(current_user) do  %>
+           <i class="fas fa-user-cog"></i>
+          <% end %>
       </div>
       <h1>New Book</h1>
         <%= form_with model: @book, local:true do |f| %>
@@ -63,7 +48,7 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= attachment_image_tag user, :profile_image, size: "50x50", fallback: "no_image.jpg" %></td>
+              <td><%= attachment_image_tag @user, :profile_image, size: "50x50", fallback: "no_image.jpg" %></td>
               <td><%= user.name %></td>
               <td></td>
             </tr>
