@@ -1,6 +1,4 @@
-<!--サクセスメッセージの表示-->
-<!--You have created book successfully.(投稿後)
-You have updated book successfully.(投稿編集後)-->
+
 
 <% if flash[:notice] %>
   <p id="notice">
@@ -15,7 +13,7 @@ You have updated book successfully.(投稿編集後)-->
     <div class="row">
       <div class="col-md-3">
         <h2>User info</h2>
-        <%= attachment_image_tag current_user, :profile_image, size: "50x50", fallback: "no_image.jpg" %>
+        <%= attachment_image_tag @book.user, :profile_image, size: "63x63", fallback: "no_image.jpg" %>
         <table class="table">
           <tbody>
             <tr></tr>
@@ -30,25 +28,26 @@ You have updated book successfully.(投稿編集後)-->
           </tbody>
         </table>
         <div class="row">
-          <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do  %>
+          <%= link_to user_path(current_user), class: "btn btn-outline-secondary btn-block" do  %>
            <i class="fas fa-user-cog"></i>
           <% end %>
         </div>
-        
+
         <div class="form-group">
           <h1>New Book</h1>
         </div>
         <%= form_with model: @newbook, local:true do |f| %>
         <div class="form-group"><h4>title</h4>
             <%= f.text_field :title , class:"form-control book_title" %>
-        </div>    
+        </div>
         <div class="form-group"><h4>Opinion</h4>
             <%= f.text_area :body , class:"form-control book_body" %>
-        </div>    
-        <div class="form-group"><input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
-          <% end %>
-        </div>  
-        
+        </div>
+        <div class="form-group">
+            <%= f.submit "Create Book" , class:"btn btn-success" %>
+        </div>
+        <% end %>
+
       </div>
       <div class="col-md-8 offset-md-1">
         <h2>Book detail</h2>
