@@ -1,3 +1,11 @@
+<!--サクセスメッセージの表示-->
+<!--Signed out successfully.(logout時)-->
+<% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
 <main>
   <p id="notice"></p>
   <div class="container">

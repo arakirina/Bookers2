@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-      
+      flash[:notice] = "successfully" 
       redirect_to book_path(@book)
     else
       @books = Book.all
@@ -24,6 +24,7 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
+    flash[:notice] = "You have updated user successfully." 
     redirect_to book_path(book)
   end
 

@@ -1,3 +1,14 @@
+<!--サクセスメッセージの表示
+
+Signed in successfully.(ログイン後)
+Welcome! You have signed up successfully.(新規登録後)-->
+
+<% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
 <main>
   <p id="notice"></p>
   <div class="container px-5 px-sm-0">
@@ -25,16 +36,23 @@
              <% end %>
             <% end %>
         </div>
-        <h1>New Book</h1>
-        <%= form_with model: @book, local:true do |f| %>
-          <h4>title</h4>
-          <%= f.text_field :title %>
-          <h4>Opinion</h4>
-          <%= f.text_area :body %>
-          <div class="form-group">
-            <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
-          </div>
+        <div class="form-group">
+          <h1>New Book</h1>
+        </div>
+        <%= form_with model: @newbook, local:true do |f| %>
+        <div class="form-group"><h4>title</h4>
+            <%= f.text_field :title , class:"form-control book_title" %>
+        </div>
+        <div class="form-group"><h4>Opinion</h4>
+            <%= f.text_area :body , class:"form-control book_body" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Sign up" , class:"btn btn-success" %>
+          <!--他のとこも変えておく-->
+        </div>
+
         <% end %>
+
       </div>
       <div class="col-md-8 offset-md-1">
         <h2>Books</h2>
